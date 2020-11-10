@@ -1,4 +1,4 @@
-FROM nfcore/base:1.11
+FROM nfcore/base:dev
 LABEL authors="nf-core" \
       description="Docker image containing all software requirements for the nf-core/testpipeline pipeline"
 
