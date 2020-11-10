@@ -1,6 +1,6 @@
 # ![nf-core/testpipeline](docs/images/nf-core-testpipeline_logo.png)
 
-** An example pipeline used to test new nf-core infrastructure and common code.**.
+**An example pipeline used to test new nf-core infrastructure and common code.**
 
 [![GitHub Actions CI Status](https://github.com/nf-core/testpipeline/workflows/nf-core%20CI/badge.svg)](https://github.com/nf-core/testpipeline/actions)
 [![GitHub Actions Linting Status](https://github.com/nf-core/testpipeline/workflows/nf-core%20linting/badge.svg)](https://github.com/nf-core/testpipeline/actions)
