@@ -6,6 +6,8 @@ NB: This pipeline is a sandbox for testing things and is likely to be completely
 
 Initial release of nf-core/testpipeline, created with the [nf-core](https://nf-co.re/) template.
 
+foo
+
 ### `Added`
 
 ### `Fixed`
