@@ -5,8 +5,7 @@ name: nf-core AWS full size tests
 
 on:
   workflow_run:
-    workflows: ["nf-core Docker push"]
-    branches: [master]
+    workflows: ["nf-core Docker push (release)"]
     types: [completed]
 
 jobs:

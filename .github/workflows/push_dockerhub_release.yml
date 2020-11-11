@@ -1,10 +1,7 @@
-name: nf-core Docker push
+name: nf-core Docker push (release)
 # This builds the docker image and pushes it to DockerHub
 # Runs on nf-core repo releases and push event to 'dev' branch (PR merges)
 on:
-  push:
-    branches:
-      - dev
   release:
     types: [published]
 
@@ -23,13 +20,6 @@ jobs:
 
       - name: Build new docker image
         run: docker build --no-cache . -t nfcore/testpipeline:latest
-
-      - name: Push Docker image to DockerHub (dev)
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker tag nfcore/testpipeline:latest nfcore/testpipeline:dev
-          docker push nfcore/testpipeline:dev
 
       - name: Push Docker image to DockerHub (release)
         if: ${{ github.event_name == 'release' }}
