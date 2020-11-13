@@ -28,7 +28,7 @@ jobs:
       - name: Check if Dockerfile or Conda environment changed
         uses: technote-space/get-diff-action@v4
         with:
-          PREFIX_FILTER: |
+          FILES: |
             Dockerfile
             environment.yml
 
