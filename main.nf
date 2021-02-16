@@ -9,9 +9,10 @@
 ----------------------------------------------------------------------------------------
 */
 
+log.info nfcoreHeader()
+
 def helpMessage() {
     // TODO nf-core: Add to this help message with new command line parameters
-    log.info nfcoreHeader()
     log.info"""
 
     Usage:
@@ -53,6 +54,16 @@ if (params.help) {
     exit 0
 }
 
+////////////////////////////////////////////////////
+/* --         VALIDATE PARAMETERS              -- */
+////////////////////////////////////////////////////+
+def json_schema = "$baseDir/nextflow_schema.json"
+def unexpectedParams = []
+if (params.validate_params) {
+    unexpectedParams = NfcoreSchema.validateParameters(params, json_schema, log)
+}
+////////////////////////////////////////////////////
+
 /*
  * SET UP CONFIGURATION VARIABLES
  */
@@ -73,13 +84,6 @@ if (params.genomes && params.genome && !params.genomes.containsKey(params.genome
 params.fasta = params.genome ? params.genomes[ params.genome ].fasta ?: false : false
 if (params.fasta) { ch_fasta = file(params.fasta, checkIfExists: true) }
 
-// Has the run name been specified by the user?
-// this has the bonus effect of catching both -name and --name
-custom_runName = params.name
-if (!(workflow.runName ==~ /[a-z]+_[a-z]+/)) {
-    custom_runName = workflow.runName
-}
-
 // Check AWS batch settings
 if (workflow.profile.contains('awsbatch')) {
     // AWSBatch sanity checking
@@ -92,10 +96,10 @@ if (workflow.profile.contains('awsbatch')) {
 }
 
 // Stage config files
-ch_multiqc_config = file("$baseDir/assets/multiqc_config.yaml", checkIfExists: true)
+ch_multiqc_config = file("$projectDir/assets/multiqc_config.yaml", checkIfExists: true)
 ch_multiqc_custom_config = params.multiqc_config ? Channel.fromPath(params.multiqc_config, checkIfExists: true) : Channel.empty()
-ch_output_docs = file("$baseDir/docs/output.md", checkIfExists: true)
-ch_output_docs_images = file("$baseDir/docs/images/", checkIfExists: true)
+ch_output_docs = file("$projectDir/docs/output.md", checkIfExists: true)
+ch_output_docs_images = file("$projectDir/docs/images/", checkIfExists: true)
 
 /*
  * Create a channel for input read files
@@ -122,10 +126,9 @@ if (params.input_paths) {
 }
 
 // Header log info
-log.info nfcoreHeader()
 def summary = [:]
 if (workflow.revision) summary['Pipeline Release'] = workflow.revision
-summary['Run Name']         = custom_runName ?: workflow.runName
+summary['Run Name']         = workflow.runName
 // TODO nf-core: Report custom parameters here
 summary['Input']            = params.input
 summary['Fasta Ref']        = params.fasta
@@ -242,8 +245,12 @@ process multiqc {
     file "multiqc_plots"
 
     script:
-    rtitle = custom_runName ? "--title \"$custom_runName\"" : ''
-    rfilename = custom_runName ? "--filename " + custom_runName.replaceAll('\\W','_').replaceAll('_+','_') + "_multiqc_report" : ''
+    rtitle = ''
+    rfilename = ''
+    if (!(workflow.runName ==~ /[a-z]+_[a-z]+/)) {
+        rtitle = "--title \"${workflow.runName}\""
+        rfilename = "--filename " + workflow.runName.replaceAll('\\W','_').replaceAll('_+','_') + "_multiqc_report"
+    }
     custom_config_file = params.multiqc_config ? "--config $mqc_custom_config" : ''
     // TODO nf-core: Specify which MultiQC modules to use with -m for a faster run time
     """
@@ -282,7 +289,7 @@ workflow.onComplete {
     }
     def email_fields = [:]
     email_fields['version'] = workflow.manifest.version
-    email_fields['runName'] = custom_runName ?: workflow.runName
+    email_fields['runName'] = workflow.runName
     email_fields['success'] = workflow.success
     email_fields['dateComplete'] = workflow.complete
     email_fields['duration'] = workflow.duration
@@ -326,18 +333,18 @@ workflow.onComplete {
 
     // Render the TXT template
     def engine = new groovy.text.GStringTemplateEngine()
-    def tf = new File("$baseDir/assets/email_template.txt")
+    def tf = new File("$projectDir/assets/email_template.txt")
     def txt_template = engine.createTemplate(tf).make(email_fields)
     def email_txt = txt_template.toString()
 
     // Render the HTML template
-    def hf = new File("$baseDir/assets/email_template.html")
+    def hf = new File("$projectDir/assets/email_template.html")
     def html_template = engine.createTemplate(hf).make(email_fields)
     def email_html = html_template.toString()
 
     // Render the sendmail template
-    def smail_fields = [ email: email_address, subject: subject, email_txt: email_txt, email_html: email_html, baseDir: "$baseDir", mqcFile: mqc_report, mqcMaxSize: params.max_multiqc_email_size.toBytes() ]
-    def sf = new File("$baseDir/assets/sendmail_template.txt")
+    def smail_fields = [ email: email_address, subject: subject, email_txt: email_txt, email_html: email_html, projectDir: "$projectDir", mqcFile: mqc_report, mqcMaxSize: params.max_multiqc_email_size.toBytes() ]
+    def sf = new File("$projectDir/assets/sendmail_template.txt")
     def sendmail_template = engine.createTemplate(sf).make(smail_fields)
     def sendmail_html = sendmail_template.toString()
 
@@ -389,6 +396,12 @@ workflow.onComplete {
 
 }
 
+workflow.onError {
+    // Print unexpected parameters
+    for (p in unexpectedParams) {
+        log.warn "Unexpected parameter: ${p}"
+    }
+}
 
 def nfcoreHeader() {
     // Log colors ANSI codes
