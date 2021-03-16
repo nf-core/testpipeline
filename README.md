@@ -12,7 +12,7 @@
 
 ## Introduction
 
-<!-- TODO nf-core: Write a 1-2 sentence summary of what data the pipeline is for and what it does -->
+<!--  Write a 1-2 sentence summary of what data the pipeline is for and what it does -->
 **nf-core/testpipeline** is a bioinformatics best-practise analysis pipeline for
 
 The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It comes with docker containers making installation trivial and results highly reproducible.
@@ -33,7 +33,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool
 
 4. Start running your own analysis!
 
-    <!-- TODO nf-core: Update the example "typical command" below used to run the pipeline -->
+    <!--  Update the example "typical command" below used to run the pipeline -->
 
     ```bash
     nextflow run nf-core/testpipeline -profile <docker/singularity/podman/shifter/charliecloud/conda/institute> --input '*_R{1,2}.fastq.gz' --genome GRCh37
@@ -45,7 +45,7 @@ See [usage docs](https://nf-co.re/testpipeline/usage) for all of the available o
 
 By default, the pipeline currently performs the following:
 
-<!-- TODO nf-core: Fill in short bullet-pointed list of default steps of pipeline -->
+<!--  Fill in short bullet-pointed list of default steps of pipeline -->
 
 * Sequencing quality control (`FastQC`)
 * Overall pipeline run summaries (`MultiQC`)
@@ -54,7 +54,7 @@ By default, the pipeline currently performs the following:
 
 The nf-core/testpipeline pipeline comes with documentation about the pipeline: [usage](https://nf-co.re/testpipeline/usage) and [output](https://nf-co.re/testpipeline/output).
 
-<!-- TODO nf-core: Add a brief overview of what the pipeline does and how it works -->
+<!--  Add a brief overview of what the pipeline does and how it works -->
 
 ## Credits
 
@@ -63,7 +63,7 @@ nf-core/testpipeline was originally written by nf-core.
 We thank the following people for their extensive assistance in the development
 of this pipeline:
 
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
+<!--  If applicable, make list of people who have also contributed -->
 
 ## Contributions and Support
 
@@ -73,7 +73,7 @@ For further information or help, don't hesitate to get in touch on the [Slack `#
 
 ## Citations
 
-<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi. -->
+<!--  Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi. -->
 <!-- If you use  nf-core/testpipeline for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
 
 You can cite the `nf-core` publication as follows:
@@ -86,4 +86,4 @@ You can cite the `nf-core` publication as follows:
 
 In addition, references of tools and data used in this pipeline are as follows:
 
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
+<!--  Add bibliography of tools and data used in your pipeline -->

@@ -98,7 +98,7 @@ log.info NfcoreSchema.params_summary_log(workflow, params, json_schema)
 def summary = [:]
 if (workflow.revision) summary['Pipeline Release'] = workflow.revision
 summary['Run Name']         = workflow.runName
-// TODO nf-core: Report custom parameters here
+//  Report custom parameters here
 summary['Input']            = params.input
 summary['Fasta Ref']        = params.fasta
 summary['Data Type']        = params.single_end ? 'Single-End' : 'Paired-End'
@@ -159,7 +159,7 @@ process get_software_versions {
     file 'software_versions.csv'
 
     script:
-    // TODO nf-core: Get all tools to print their version number here
+    //  Get all tools to print their version number here
     """
     echo $workflow.manifest.version > v_pipeline.txt
     echo $workflow.nextflow.version > v_nextflow.txt
@@ -201,7 +201,7 @@ process multiqc {
     input:
     file (multiqc_config) from ch_multiqc_config
     file (mqc_custom_config) from ch_multiqc_custom_config.collect().ifEmpty([])
-    // TODO nf-core: Add in log files from your new processes for MultiQC to find!
+    //  Add in log files from your new processes for MultiQC to find!
     file ('fastqc/*') from ch_fastqc_results.collect().ifEmpty([])
     file ('software_versions/*') from ch_software_versions_yaml.collect()
     file workflow_summary from ch_workflow_summary.collectFile(name: "workflow_summary_mqc.yaml")
@@ -219,7 +219,7 @@ process multiqc {
         rfilename = "--filename " + workflow.runName.replaceAll('\\W','_').replaceAll('_+','_') + "_multiqc_report"
     }
     custom_config_file = params.multiqc_config ? "--config $mqc_custom_config" : ''
-    // TODO nf-core: Specify which MultiQC modules to use with -m for a faster run time
+    //  Specify which MultiQC modules to use with -m for a faster run time
     """
     multiqc -f $rtitle $rfilename $custom_config_file .
     """
@@ -277,7 +277,7 @@ workflow.onComplete {
     email_fields['summary']['Nextflow Build'] = workflow.nextflow.build
     email_fields['summary']['Nextflow Compile Timestamp'] = workflow.nextflow.timestamp
 
-    // TODO nf-core: If not using MultiQC, strip out this code (including params.max_multiqc_email_size)
+    //  If not using MultiQC, strip out this code (including params.max_multiqc_email_size)
     // On success try attach the multiqc report
     def mqc_report = null
     try {
