@@ -11,8 +11,6 @@ import org.json.JSONArray
 import groovy.json.JsonSlurper
 import groovy.json.JsonBuilder
 
-println("WHAT DOES THIS FILE DO? THIS IS A DEBUGGING STATEMENT")
-
 class NfcoreSchema {
 
     /*
