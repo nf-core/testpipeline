@@ -10,6 +10,7 @@ Initial release of nf-core/testpipeline, created with the [nf-core](https://nf-c
 ### `Added`
 
 * Added awesome new pipeline function that does cool stuff
+* Updated to the latest nf-core/template version!
 
 ### `Fixed`
 
