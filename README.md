@@ -10,18 +10,20 @@
 [![Docker](https://img.shields.io/docker/automated/nfcore/testpipeline.svg)](https://hub.docker.com/r/nfcore/testpipeline)
 [![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23testpipeline-4A154B?logo=slack)](https://nfcore.slack.com/channels/testpipeline)
 
-## Introduction
+## Introduction  
 
 <!--  Write a 1-2 sentence summary of what data the pipeline is for and what it does -->
 **nf-core/testpipeline** is a bioinformatics best-practise analysis pipeline for
-
+```
+naughty
+```
 The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It comes with docker containers making installation trivial and results highly reproducible.
 
 ## Quick Start
-
 1. Install [`nextflow`](https://nf-co.re/usage/installation)
-
+* foo
 2. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/), [`Podman`](https://podman.io/), [`Shifter`](https://nersc.gitlab.io/development/shifter/how-to-use/) or [`Charliecloud`](https://hpc.github.io/charliecloud/) for full pipeline reproducibility _(please only use [`Conda`](https://conda.io/miniconda.html) as a last resort; see [docs](https://nf-co.re/usage/configuration#basic-configuration-profiles))_
+- bar
 
 3. Download the pipeline and test it on a minimal dataset with a single command:
 
