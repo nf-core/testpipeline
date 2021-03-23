@@ -1,3 +1,9 @@
+---
+name: Feature request
+about: Suggest an idea for the nf-core/testpipeline pipeline
+labels: enhancement
+---
+
 <!--
 # nf-core/testpipeline feature request
 
