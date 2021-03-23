@@ -121,6 +121,10 @@ class NfcoreSchema {
         // Validate parameters against the schema
         InputStream inputStream = new File(jsonSchema).newInputStream()
         JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream))
+
+        // Remove anything that's in params.schema_ignore_params
+        rawSchema = removeIgnoredParams(rawSchema, params)
+
         Schema schema = SchemaLoader.load(rawSchema)
 
         // Clean the parameters
@@ -183,6 +187,47 @@ class NfcoreSchema {
         for (ex in causingExceptions) {
             printExceptions(ex, paramsJSON, log)
         }
+    }
+
+    // Remove an element from a JSONArray
+    private static JSONArray removeElement(jsonArray, element) {
+        def list = []
+        int len = jsonArray.length()
+        for (int i = 0; i < len; i++) {
+            list.add(jsonArray.get(i).toString())
+        }
+        list.remove(element)
+        JSONArray jsArray = new JSONArray(list)
+        return jsArray
+    }
+
+    private static JSONObject removeIgnoredParams(rawSchema, params) {
+        // Remove anything that's in params.schema_ignore_params
+        params.schema_ignore_params.split(',').each { ignore_param ->
+            if (rawSchema.keySet().contains('definitions')) {
+                rawSchema.definitions.each { definition ->
+                    for (key in definition.keySet()) {
+                        if (definition[key].get('properties').keySet().contains(ignore_param)) {
+                            // Remove the param to ignore
+                            definition[key].get('properties').remove(ignore_param)
+                            // If the param was required, change this
+                            if (definition[key].has('required')) {
+                                def cleaned_required = removeElement(definition[key].required, ignore_param)
+                                definition[key].put('required', cleaned_required)
+                            }
+                        }
+                    }
+                }
+            }
+            if (rawSchema.keySet().contains('properties') && rawSchema.get('properties').keySet().contains(ignore_param)) {
+                rawSchema.get('properties').remove(ignore_param)
+            }
+            if (rawSchema.keySet().contains('required') && rawSchema.required.contains(ignore_param)) {
+                def cleaned_required = removeElement(rawSchema.required, ignore_param)
+                rawSchema.put('required', cleaned_required)
+            }
+        }
+        return rawSchema
     }
 
     private static Map cleanParameters(params) {
@@ -347,7 +392,7 @@ class NfcoreSchema {
         schema_properties.each { innerkey, value ->
             ungrouped_params.put(innerkey, value)
         }
-        params_map.put("Other parameters", ungrouped_params)
+        params_map.put('Other parameters', ungrouped_params)
 
         return params_map
     }
@@ -388,38 +433,38 @@ class NfcoreSchema {
             for (param in group_params.keySet()) {
                 if (group_params.get(param).hidden && !params.show_hidden_params) {
                     num_hidden += 1
-                    continue;
+                    continue
                 }
                 def type = '[' + group_params.get(param).type + ']'
                 def description = group_params.get(param).description
-                def defaultValue = group_params.get(param).default ? " [default: " + group_params.get(param).default.toString() + "]" : ''
+                def defaultValue = group_params.get(param).default ? ' [default: ' + group_params.get(param).default.toString() + ']' : ''
                 def description_default = description + colors.dim + defaultValue + colors.reset
                 // Wrap long description texts
                 // Loosely based on https://dzone.com/articles/groovy-plain-text-word-wrap
-                if (description_default.length() > dec_linewidth){
+                if (description_default.length() > dec_linewidth) {
                     List olines = []
-                    String oline = "" // " " * indent
-                    description_default.split(" ").each() { wrd ->
+                    String oline = '' // " " * indent
+                    description_default.split(' ').each() { wrd ->
                         if ((oline.size() + wrd.size()) <= dec_linewidth) {
-                            oline += wrd + " "
+                            oline += wrd + ' '
                         } else {
                             olines += oline
-                            oline = wrd + " "
+                            oline = wrd + ' '
                         }
                     }
                     olines += oline
-                    description_default = olines.join("\n" + " " * desc_indent)
+                    description_default = olines.join('\n' + ' ' * desc_indent)
                 }
-                group_output += "  --" +  param.padRight(max_chars) + colors.dim + type.padRight(10) + colors.reset + description_default + '\n'
+                group_output += '  --' +  param.padRight(max_chars) + colors.dim + type.padRight(10) + colors.reset + description_default + '\n'
                 num_params += 1
             }
             group_output += '\n'
-            if (num_params > 0){
+            if (num_params > 0) {
                 output += group_output
             }
         }
         output += dashed_line(params.monochrome_logs)
-        if (num_hidden > 0){
+        if (num_hidden > 0) {
             output += colors.dim + "\n Hiding $num_hidden params, use --show_hidden_params to show.\n" + colors.reset
             output += dashed_line(params.monochrome_logs)
         }
@@ -517,7 +562,7 @@ class NfcoreSchema {
                 output += '\n'
             }
         }
-        output += "[Only displaying parameters that differ from pipeline default]\n"
+        output += '[Only displaying parameters that differ from pipeline default]\n'
         output += dashed_line(params.monochrome_logs)
         output += '\n\n' + dashed_line(params.monochrome_logs)
         return output
