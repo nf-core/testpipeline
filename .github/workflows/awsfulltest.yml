@@ -28,7 +28,7 @@ jobs:
         # on the `test_full.config` test runs with only one set of parameters
         run: |
           curl -X POST "https://api.tower.nf/workflow/launch?workspaceId=${{ secrets.TOWER_WORKSPACE_ID }}" \
-            -H "Accept: application/json" \
-            -H "Authorization: Bearer ${{ secrets.TOWER_BEARER_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"launch":{"id":"string","computeEnvId":"${{ secrets.TOWER_WORKSPACE_ID }}","pipeline":"nf-core/testpipeline","workDir":"s3://${{ secrets.AWS_S3_BUCKET }}/work/testpipeline/results-${{ github.sha }}","paramsText":"{\"outdir\":\"s3://${{ secrets.AWS_S3_BUCKET }}/testpipeline/results-${{ github.sha }}\"}","revision":"${{ github.sha }}","configProfiles":["test_full"],"resume":false,"dateCreated":"1970-01-01T00:00:00.000Z"}}'
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer ${{ secrets.TOWER_BEARER_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"launch":{"id":"string","computeEnvId":"${{ secrets.TOWER_WORKSPACE_ID }}","pipeline":"nf-core/testpipeline","workDir":"s3://${{ secrets.AWS_S3_BUCKET }}/work/testpipeline/results-${{ github.sha }}","paramsText":"{\"outdir\":\"s3://${{ secrets.AWS_S3_BUCKET }}/testpipeline/results-${{ github.sha }}\"}","revision":"${{ github.sha }}","configProfiles":["test_full"],"resume":false,"dateCreated":"1970-01-01T00:00:00.000Z"}}'
