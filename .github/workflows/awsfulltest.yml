@@ -22,20 +22,13 @@ jobs:
     if: github.repository == 'nf-core/testpipeline'
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          python-version: 3.7
-      - name: Install awscli
-        run: conda install -c conda-forge awscli
-      - name: Start AWS batch job
+      - name: Launch workflow via tower
         # TODO nf-core: You can customise AWS full pipeline tests as required
         # Add full size test data (but still relatively small datasets for few samples)
         # on the `test_full.config` test runs with only one set of parameters
         run: |
           curl -X POST "https://api.tower.nf/workflow/launch?workspaceId='"${TOWER_WORKSPACE_ID}"'" \
             -H "Accept: application/json" \
-            -H "Authorization: Bearer '"${TOWER_BEARER_TOKEN}"'" \
+            -H "Authorization: Bearer ${TOWER_BEARER_TOKEN}" \
             -H "Content-Type: application/json" \
-            -d '{"launch":{"id":"string","computeEnvId":"'"${TOWER_WORKSPACE_ID}"'","pipeline":"nf-core/testpipeline","workDir":"s3://'"${AWS_S3_BUCKET}"'/work/testpipeline/results-'"${GITHUB_SHA}"'","paramsText":"{ \"outdir\":\"s3://nf-core-awsmegatests/testpipeline/results-'"${GITHUB_SHA}"'\" }","revision":"'"${GITHUB_SHA}"'","configProfiles":["test_full"],"resume":false,"dateCreated":"1970-01-01T00:00:00.000Z"}}'
+            -d '{"launch":{"id":"string","computeEnvId":"${TOWER_WORKSPACE_ID}","pipeline":"nf-core/testpipeline","workDir":"s3://${AWS_S3_BUCKET}/work/testpipeline/results-${GITHUB_SHA}","paramsText":"{ \"outdir\":\"s3://nf-core-awsmegatests/testpipeline/results-${GITHUB_SHA}\" }","revision":"${GITHUB_SHA}","configProfiles":["test_full"],"resume":false,"dateCreated":"1970-01-01T00:00:00.000Z"}}'
