@@ -34,7 +34,7 @@ jobs:
           -d '{
             "launch": { 
               "id" : "string",
-              "computeEnvId" : "${{ secrets.TOWER_WORKSPACE_ID }}",
+              "computeEnvId" : "${{ secrets.TOWER_COMPUTE_ENV }}",
               "pipeline" : "nf-core/testpipeline",
               "workDir" : "s3://${{ secrets.AWS_S3_BUCKET }}/work/testpipeline/results-${{ github.sha }}",
               "paramsText" : "{\"outdir\":\"s3://${{ secrets.AWS_S3_BUCKET }}/testpipeline/results-${{ github.sha }}\"}",
