@@ -8,14 +8,6 @@ on:
     types: [published]
   workflow_dispatch:
 
-
-env:
-  TOWER_BEARER_TOKEN: ${{ secrets.TOWER_BEARER_TOKEN }}
-  TOWER_COMPUTE_ENV: ${{ secrets.TOWER_COMPUTE_ENV }}
-  TOWER_WORKSPACE_ID: ${{ secrets.TOWER_WORKSPACE_ID }}
-  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-
-
 jobs:
   run-awstest:
     name: Run AWS full tests
