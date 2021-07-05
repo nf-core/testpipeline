@@ -36,7 +36,7 @@ jobs:
               "id" : "string",
               "computeEnvId" : "'"${TOWER_COMPUTE_ENV}"'",
               "pipeline" : "nf-core/testpipeline",
-              "workDir" : "s3://'"${AWS_S3_BUCKET}"'/work/testpipeline/results-'"${GITHUB_SHA}"'",
+              "workDir" : "s3://'"${AWS_S3_BUCKET}"'/work/testpipeline/commit-'"${GITHUB_SHA}"'",
               "paramsText" : "{\"outdir\":\"s3://'"${AWS_S3_BUCKET}"'/testpipeline/results-'"${GITHUB_SHA}"'\"}",
               "revision" : "'"${GITHUB_SHA}"'",
               "configProfiles" : ["test_full","aws_tower"],
