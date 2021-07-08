@@ -8,13 +8,8 @@ on:
     types: [published]
   workflow_dispatch:
 
-
 env:
-  TOWER_WORKSPACE_ID: ${{ secrets.TOWER_WORKSPACE_ID }}
-  TOWER_BEARER_TOKEN: ${{ secrets.TOWER_BEARER_TOKEN }}
-  TOWER_COMPUTE_ENV: ${{ secrets.TOWER_COMPUTE_ENV }}
   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-
 
 jobs:
   run-tower:
@@ -28,14 +23,17 @@ jobs:
         # Add full size test data (but still relatively small datasets for few samples)
         # on the `test_full.config` test runs with only one set of parameters
         with:
-          workspace_id: $TOWER_WORKSPACE_ID
-          bearer_token: $TOWER_BEARER_TOKEN
-          compute_env: $TOWER_COMPUTE_ENV
-          pipeline: nf-core/testpipeline
-          revision: ${GITHUB_SHA}
+
+          workspace_id: ${{ secrets.TOWER_WORKSPACE_ID }}
+          bearer_token: ${{ secrets.TOWER_BEARER_TOKEN }}
+          compute_env: ${{ secrets.TOWER_COMPUTE_ENV }}
+          pipeline: ${{ github.repository }}
+          revision: ${{ github.sha }}
+
           workdir: s3://${AWS_S3_BUCKET}/work/testpipeline/work-${GITHUB_SHA}
           parameters: |
             {
               "outdir": "s3://${AWS_S3_BUCKET}/testpipeline/results-${GITHUB_SHA}"
             }
           profiles: '[ "test", "aws_tower" ]'
+
