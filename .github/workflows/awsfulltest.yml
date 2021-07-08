@@ -33,7 +33,7 @@ jobs:
           compute_env: $TOWER_COMPUTE_ENV
           pipeline: nf-core/testpipeline
           revision: ${GITHUB_SHA}
-          workdir: "s3://${AWS_S3_BUCKET}/work/testpipeline/work-${GITHUB_SHA}"
+          workdir: s3://${AWS_S3_BUCKET}/work/testpipeline/work-${GITHUB_SHA}
           parameters: |
             {
               "outdir": "s3://${AWS_S3_BUCKET}/testpipeline/results-${GITHUB_SHA}"
