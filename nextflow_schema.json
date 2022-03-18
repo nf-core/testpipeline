@@ -102,16 +102,11 @@
           "help_text": "If you're running offline, Nextflow will not be able to fetch the institutional config files from the internet. If you don't need them, then this is not a problem. If you do need them, you should download the files from the repo and tell Nextflow where to find them with this parameter.",
           "fa_icon": "fas fa-users-cog"
         },
-<<<<<<< HEAD
-        {
-            "$ref": "#/definitions/institutional_config_options"
-=======
         "config_profile_name": {
           "type": "string",
           "description": "Institutional config name.",
           "hidden": true,
           "fa_icon": "fas fa-users-cog"
->>>>>>> TEMPLATE
         },
         "config_profile_description": {
           "type": "string",
@@ -119,13 +114,6 @@
           "hidden": true,
           "fa_icon": "fas fa-users-cog"
         },
-<<<<<<< HEAD
-        {
-            "$ref": "#/definitions/generic_options"
-        }
-    ]
-}
-=======
         "config_profile_contact": {
           "type": "string",
           "description": "Institutional config contact information.",
@@ -279,4 +267,3 @@
     }
   ]
 }
->>>>>>> TEMPLATE
