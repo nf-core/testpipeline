@@ -17,7 +17,7 @@ If you'd like to write some code for nf-core/testpipeline, the standard workflow
 
 1. Check that there isn't already an issue about your idea in the [nf-core/testpipeline issues](https://github.com/nf-core/testpipeline/issues) to avoid duplicating work
 
-   - If there isn't one already, please create one so that others know you're working on this
+- If there isn't one already, please create one so that others know you're working on this
 
 2. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the [nf-core/testpipeline repository](https://github.com/nf-core/testpipeline) to your GitHub account
 3. Make the necessary changes / additions within your forked repository following [Pipeline conventions](#pipeline-contribution-conventions)
