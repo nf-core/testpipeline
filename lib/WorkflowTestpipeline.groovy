@@ -46,12 +46,13 @@ class WorkflowTestpipeline {
     public static String methodsDescriptionText(nextflow, workflow, custom_text) {
         String yaml_file_text  = "id: '${workflow.manifest.name.replace('/', '-')}-methods-description'\n"
 
+        yaml_file_text        += "description: 'Suggested methods description text of pipeline usage'\n"
+        yaml_file_text        += "section_name: '${ workflow.manifest.name } Methods Description'\n"
+        yaml_file_text        += "section_href: 'https://github.com/${workflow.manifest.name}'\n"
+        yaml_file_text        += "plot_type: 'html'\n"
+        yaml_file_text        += 'data: |\n'
+
         if ( !custom_text ) {
-            yaml_file_text        += "description: 'Suggested methods description text of pipeline usage'\n"
-            yaml_file_text        += "section_name: '${ workflow.manifest.name } Methods Description'\n"
-            yaml_file_text        += "section_href: 'https://github.com/${workflow.manifest.name}'\n"
-            yaml_file_text        += "plot_type: 'html'\n"
-            yaml_file_text        += 'data: |\n'
             yaml_file_text        += '  <b>Methods</b>'
             // TODO PIPELINE PUBLICATION CITATION; CONDITIONAL ZENODO DOI
             yaml_file_text        += "  <p>Data was processed using the nf-core (Ewels et al. 2020) pipeline ${workflow.manifest.name} v${workflow.manifest.version} (doi:${workflow.manifest.doi}).</p>\n"
@@ -59,7 +60,7 @@ class WorkflowTestpipeline {
             yaml_file_text        += "  <pre><code>${workflow.commandLine}</code></pre>\n"
             yaml_file_text        += '  <b>References</b>\n'
             yaml_file_text        += '  <ul>\n'
-            // TODO PIPELINE PUBLICATION REFERENCE
+            // TODO INSERT AND EVALUTE PIPELINE PUBLICATION REFERENCE
             yaml_file_text        += '  <li>Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., & Notredame, C. (2017). Nextflow enables reproducible computational workflows. Nature Biotechnology, 35(4), 316–319. https://doi.org/10.1038/nbt.3820 </li>\n'
             yaml_file_text        += '  <li>Ewels, P. A., Peltzer, A., Fillinger, S., Patel, H., Alneberg, J., Wilm, A., Garcia, M. U., Di Tommaso, P., & Nahnsen, S. (2020). The nf-core framework for community-curated bioinformatics pipelines. Nature Biotechnology, 38(3), 276–278. https://doi.org/10.1038/s41587-020-0439-x </li>\n'
             yaml_file_text        += '  </ul>\n'
@@ -72,7 +73,10 @@ class WorkflowTestpipeline {
             yaml_file_text        += '  </ul>\n'
             yaml_file_text        += '  </blockquote>\n'
         } else {
-            yaml_file_text        += "${print(custom_text)}"
+            // don't know if this is good nextflow/groovy practise...
+            // For docs: must be HTML only (not MultiQC headers), and each line must be two space indented
+            // Does not evalute variables such as `${workflow.manifest.name} - could look into: https://stackoverflow.com/a/29156385/11502856
+            yaml_file_text        += new File(custom_text).text
         }
 
         return yaml_file_text
