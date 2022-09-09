@@ -61,8 +61,9 @@ jobs:
 
             We highly recommend setting up Black in your code editor so that this formatting is done automatically on save. Ask about it on Slack for help!
 
-      - name: Install Prettier
-        run: npm install -g prettier
+            Thanks again for your contribution!
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-repeats: false
 
   nf-core:
     runs-on: ubuntu-latest
