@@ -26,4 +26,6 @@ jobs:
           pip install nf-core
 
       - name: Download the pipeline
+        env:
+          NXF_SINGULARITY_CACHEDIR: ${{GITHUB_WORKSPACE}}
         run: nf-core download rnaseq -r dev -c singularity --singularity-cache-copy -x tar.bz2 --force
