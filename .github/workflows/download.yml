@@ -27,5 +27,5 @@ jobs:
 
       - name: Download the pipeline
         env:
-          NXF_SINGULARITY_CACHEDIR: ${{GITHUB_WORKSPACE}}
+          NXF_SINGULARITY_CACHEDIR: ./
         run: nf-core download rnaseq -r dev -c singularity --singularity-cache-copy -x tar.bz2 --force
