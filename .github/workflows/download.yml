@@ -1,8 +1,6 @@
 name: nf-core download
 on:
   push:
-    branches:
-      - dev
   pull_request:
   release:
     types: [published]
@@ -28,4 +26,4 @@ jobs:
           pip install nf-core
 
       - name: Download the pipeline
-        run: nf-core download rnaseq -r dev -c singularity --singularity-cache-copy -x tar.bz2 --force
+        run: nf-core download testpipeline -r dev -c singularity --singularity-cache-copy -x tar.bz2 --force
