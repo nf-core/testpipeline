@@ -28,4 +28,10 @@ jobs:
       - name: Download the pipeline
         env:
           NXF_SINGULARITY_CACHEDIR: ./
-        run: nf-core download rnaseq -r dev -c singularity --singularity-cache-copy -x tar.bz2 --force
+        run: nf-core download sarek -r dev -c singularity --singularity-cache-copy -x none --force -o test
+        
+      - name: Run the downloaded pipeline
+          env:
+            NXF_SINGULARITY_CACHEDIR: ./
+          run: nextflow run test -profile test,docker --outdir ./results
+
