@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: "3.7"
           architecture: "x64"
+      - uses: eWaterCycle/setup-singularity@v7
+        with:
+          singularity-version: 3.8.7
 
       - name: Install dependencies
         run: |
@@ -33,5 +36,5 @@ jobs:
       - name: Run the downloaded pipeline
         env:
           NXF_SINGULARITY_CACHEDIR: ./
-        run: nextflow run test/workflow -profile test,docker --outdir ./results
+        run: nextflow run test/workflow -profile test,singularity --outdir ./results
 
