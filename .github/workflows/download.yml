@@ -29,9 +29,9 @@ jobs:
         env:
           NXF_SINGULARITY_CACHEDIR: ./
         run: nf-core download sarek -r dev -c singularity --singularity-cache-copy -x none --force -o test
-        
+
       - name: Run the downloaded pipeline
-          env:
-            NXF_SINGULARITY_CACHEDIR: ./
-          run: nextflow run test -profile test,docker --outdir ./results
+        env:
+          NXF_SINGULARITY_CACHEDIR: ./
+        run: nextflow run test/workflow -profile test,docker --outdir ./results
 
