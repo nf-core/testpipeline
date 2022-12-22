@@ -131,18 +131,15 @@ jobs:
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: refgenie populater --file ${GITHUB_WORKSPACE}/conf/genomes.config.tpl > ${GITHUB_WORKSPACE}/conf/genomes.config
 
-      - uses: technote-space/get-diff-action@v6
-        with:
-          FILES: |
-            ${GITHUB_WORKSPACE}/conf/genomes.config
-
-      - name: Save PR number
-        if: ${{ always() }}
-        run: echo ${{ github.event.pull_request.number }} > PR_number.txt
-
-      - name: Check genomes.conf
+      - name: Verify genomes.config
         # if there are differences in the genomes.conf file
         if: env.GIT_DIFF
+        uses: tj-actions/verify-changed-files@v13
+        with:
+          files: ${GITHUB_WORKSPACE}/conf/genomes.config
+
+      - name: Post PR comment if genomes.config changed
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: mshick/add-pr-comment@v1
         with:
           message: |
