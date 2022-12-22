@@ -161,4 +161,4 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('File genomes.config changed manually')
+            core.setFailed('File genomes.config changed manually')
