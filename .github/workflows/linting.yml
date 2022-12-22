@@ -124,20 +124,20 @@ jobs:
           pip install refgenie
           python -m pip install --upgrade --force-reinstall git+https://github.com/refgenie/refgenconf.git@dev
 
-      - name: Check refgenie genomes.config file
+      - name: Populate genomes.config file
         env:
           GITHUB_COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: refgenie populater --file ${GITHUB_WORKSPACE}/conf/genomes.config.tpl > ${GITHUB_WORKSPACE}/conf/genomes.config
 
-      - name: Verify genomes.config
+      - name: Verify file not changed
         uses: tj-actions/verify-changed-files@v13
         with:
           files: ${GITHUB_WORKSPACE}/conf/genomes.config
 
       - name: Post PR comment if genomes.config changed
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        if: steps.verify-file-not-changed.outputs.files_changed == 'true'
         uses: mshick/add-pr-comment@v1
         with:
           message: |
