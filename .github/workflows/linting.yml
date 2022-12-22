@@ -131,8 +131,9 @@ jobs:
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: refgenie populater --file ${GITHUB_WORKSPACE}/conf/genomes.config.tpl > ${GITHUB_WORKSPACE}/conf/genomes.config
 
-      - name: Verify file not changed
+      - name: Verify genomes.config file not changed
         uses: tj-actions/verify-changed-files@v13
+        id: verify-file-not-changed
         with:
           files: ${GITHUB_WORKSPACE}/conf/genomes.config
 
