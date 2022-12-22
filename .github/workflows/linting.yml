@@ -155,4 +155,10 @@ jobs:
             Thanks again for your contribution!
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-repeats: false
-        run: exit 1
+
+      - name: Fail if genomes.config changed
+        if: steps.verify-file-not-changed.outputs.files_changed == 'true'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('File genomes.config changed manually')
