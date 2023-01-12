@@ -127,7 +127,7 @@ jobs:
       - name: Init refgenie
         run: |
           refgenie init -c ${GITHUB_WORKSPACE}/../../genome_config.yaml
-          sed -i s/refgenomes.databio.org/igenomes.databio.org/
+          sed -i s/refgenomes.databio.org/igenomes.databio.org/ ${GITHUB_WORKSPACE}/../../genome_config.yaml
 
       - name: Populate genomes.config file
         env:
