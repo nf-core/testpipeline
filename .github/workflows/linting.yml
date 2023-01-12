@@ -135,6 +135,7 @@ jobs:
           GITHUB_COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
+          REFGENIE: ${GITHUB_WORKSPACE}/../../genome_config.yaml
         run: refgenie populater --file ${GITHUB_WORKSPACE}/conf/genomes.config.tpl > ${GITHUB_WORKSPACE}/conf/genomes.config
 
       - name: Verify genomes.config file not changed
