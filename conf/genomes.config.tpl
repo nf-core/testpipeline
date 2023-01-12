@@ -13,7 +13,7 @@ params {
     genomes {
         'GRCh37' {
             fasta       = "refgenie://homo_sapiens-ensembl-grch37/fasta"
-            bwa         = "refgenie://homo_sapiens-ensembl-grch37/bwa_index:0.7.17"
+            bwa         = "refgenie://homo_sapiens-ensembl-grch37/bwa_index"
             bowtie2     = "refgenie://homo_sapiens-ensembl-grch37/bowtie2_index"
             star        = "refgenie://homo_sapiens-ensembl-grch37/star_index"
             bismark     = "refgenie://homo_sapiens-ensembl-grch37/bismark_bt2_index"
