@@ -124,6 +124,11 @@ jobs:
           pip install refgenie
           python -m pip install --upgrade --force-reinstall git+https://github.com/refgenie/refgenconf.git@dev
 
+      - name: Init refgenie
+        run: |
+          refgenie init -c genome_config.yaml
+          export REFGENIE=genome_config.yaml
+
       - name: Populate genomes.config file
         env:
           GITHUB_COMMENTS_URL: ${{ github.event.pull_request.comments_url }}
