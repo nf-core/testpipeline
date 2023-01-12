@@ -126,7 +126,6 @@ jobs:
 
       - name: Init refgenie
         run: |
-          echo "" > ${GITHUB_WORKSPACE}/../../genome_config.yaml
           refgenie init -c ${GITHUB_WORKSPACE}/../../genome_config.yaml
 
       - name: Populate genomes.config file
