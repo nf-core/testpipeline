@@ -16,7 +16,7 @@
                     "type": "object",
                     "properties": {
                         "qux": { "type": "string", "default": "corge" },
-                        "grault": { "type": "string", "default": "garply" }
+                        "grault": { "type": "string", "default": "garply" },
                         "biz": {
                     "type": "object",
                     "properties": {
