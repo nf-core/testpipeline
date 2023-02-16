@@ -17,6 +17,13 @@
                     "properties": {
                         "qux": { "type": "string", "default": "corge" },
                         "grault": { "type": "string", "default": "garply" }
+                        "biz": {
+                    "type": "object",
+                    "properties": {
+                        "quix": { "type": "string", "default": "corge" },
+                        "griult": { "type": "string", "default": "garply" }
+                    }
+                },
                     }
                 },
                 "input": {
