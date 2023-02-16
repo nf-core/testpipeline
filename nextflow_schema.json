@@ -12,6 +12,13 @@
             "description": "Define where the pipeline should find input data and save output data.",
             "required": ["input", "outdir"],
             "properties": {
+                "baz": {
+                    "type": "object",
+                    "properties": {
+                        "qux": { "type": "string", "default": "corge" },
+                        "grault": { "type": "string", "default": "garply" }
+                    }
+                }
                 "input": {
                     "type": "string",
                     "format": "file-path",
