@@ -23,7 +23,7 @@
                         "quix": { "type": "string", "default": "corge" },
                         "griult": { "type": "string", "default": "garply" }
                     }
-                },
+                }
                     }
                 },
                 "input": {
