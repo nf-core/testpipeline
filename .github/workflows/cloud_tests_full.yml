@@ -3,10 +3,6 @@ run-name: Submitting workflow to all cloud providers using full sized data
 on:
   release:
     types: [published]
-    inputs:
-      platform:
-        description: "Platform to run test"
-        default: "all"
   workflow_dispatch:
     inputs:
       platform:
@@ -21,7 +17,7 @@ on:
           - gcp
 jobs:
   run-full-tests-on-aws:
-    if: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'aws' }}
+    if: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'aws' || !github.event.inputs }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -45,7 +41,7 @@ jobs:
           name: Tower debug log file
           path: tower_action_*.log
   run-full-tests-on-gcp:
-    if: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'gcp' }}
+    if: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'gcp' || !github.event.inputs }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -69,7 +65,7 @@ jobs:
           name: Tower debug log file
           path: tower_action_*.log
   run-full-tests-on-azure:
-    if: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'azure' }}
+    if: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'azure' || !github.event.inputs }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
