@@ -4,7 +4,6 @@
     nf-core/testpipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Github : https://github.com/nf-core/testpipeline
-
     Website: https://nf-co.re/testpipeline
     Slack  : https://nfcore.slack.com/channels/testpipeline
 ----------------------------------------------------------------------------------------

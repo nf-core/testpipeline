@@ -13,7 +13,6 @@ class WorkflowTestpipeline {
     public static void initialise(params, log) {
         genomeExistsError(params, log)
 
-
         if (!params.fasta) {
             Nextflow.error "Genome fasta file not specified with e.g. '--fasta genome.fa' or via a detectable config file."
         }
@@ -46,6 +45,7 @@ class WorkflowTestpipeline {
         return yaml_file_text
     }
 
+
     public static String methodsDescriptionText(run_workflow, mqc_methods_yaml) {
         // Convert  to a named map so can be used as with familar NXF ${workflow} variable syntax in the MultiQC YML file
         def meta = [:]
@@ -61,7 +61,9 @@ class WorkflowTestpipeline {
         def description_html = engine.createTemplate(methods_text).make(meta)
 
         return description_html
-    }//
+    }
+
+    //
     // Exit pipeline if incorrect --genome key provided
     //
     private static void genomeExistsError(params, log) {
