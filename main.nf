@@ -4,6 +4,10 @@
     nf-core/testpipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Github : https://github.com/nf-core/testpipeline
+<<<<<<< HEAD
+=======
+
+>>>>>>> TEMPLATE
     Website: https://nf-co.re/testpipeline
     Slack  : https://nfcore.slack.com/channels/testpipeline
 ----------------------------------------------------------------------------------------
