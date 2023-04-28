@@ -76,7 +76,7 @@ For more details about the output files and reports, please refer to the
 
 ## Credits
 
-nf-core/testpipeline was originally written by nf-core.
+nf-core/testpipeline was originally written by .
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
