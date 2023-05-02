@@ -4,19 +4,6 @@
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {
-<<<<<<< HEAD
-                "custom/dumpsoftwareversions": {
-                    "branch": "master",
-                    "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
-                },
-                "fastqc": {
-                    "branch": "master",
-                    "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
-                },
-                "multiqc": {
-                    "branch": "master",
-                    "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
-=======
                 "nf-core": {
                     "custom/dumpsoftwareversions": {
                         "branch": "master",
@@ -33,7 +20,6 @@
                         "git_sha": "f2d63bd5b68925f98f572eed70993d205cc694b7",
                         "installed_by": ["modules"]
                     }
->>>>>>> TEMPLATE
                 }
             }
         }
