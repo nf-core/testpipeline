@@ -89,4 +89,3 @@ jobs:
         with:
           name: Tower debug log file
           path: tower_action_*.log
-
