@@ -14,7 +14,6 @@ class WorkflowTestpipeline {
 
         genomeExistsError(params, log)
 
-
         if (!params.fasta) {
             Nextflow.error "Genome fasta file not specified with e.g. '--fasta genome.fa' or via a detectable config file."
         }
@@ -46,6 +45,7 @@ class WorkflowTestpipeline {
         yaml_file_text        += "${summary_section}"
         return yaml_file_text
     }
+
 
     //
     // Generate methods description for MultiQC
