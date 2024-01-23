@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the main.nf workflow in the nf-core/testpipeline pipeline
+// This file holds several functions specific to the main.nf workflow in the nf-core/validation pipeline
 //
 
 import nextflow.Nextflow

@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/testpipeline/master/assets/schema_input.json",
-    "title": "nf-core/testpipeline pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/validation/master/assets/schema_input.json",
+    "title": "nf-core/validation pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {

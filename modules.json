@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/testpipeline",
-    "homePage": "https://github.com/nf-core/testpipeline",
+    "name": "nf-core/validation",
+    "homePage": "https://github.com/nf-core/validation",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {

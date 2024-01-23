@@ -1,11 +1,11 @@
 //
-// This file holds several functions specific to the workflow/testpipeline.nf in the nf-core/testpipeline pipeline
+// This file holds several functions specific to the workflow/validation.nf in the nf-core/validation pipeline
 //
 
 import nextflow.Nextflow
 import groovy.text.SimpleTemplateEngine
 
-class WorkflowTestpipeline {
+class WorkflowValidation {
 
     //
     // Check and validate parameters

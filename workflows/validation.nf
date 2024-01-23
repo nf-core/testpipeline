@@ -13,7 +13,7 @@ def summary_params = paramsSummaryMap(workflow)
 // Print parameter summary log to screen
 log.info logo + paramsSummaryLog(workflow) + citation
 
-WorkflowTestpipeline.initialise(params, log)
+WorkflowValidation.initialise(params, log)
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoft
 // Info required for completion email and summary
 def multiqc_report = []
 
-workflow TESTPIPELINE {
+workflow VALIDATION {
 
     ch_versions = Channel.empty()
 
@@ -89,10 +89,10 @@ workflow TESTPIPELINE {
     //
     // MODULE: MultiQC
     //
-    workflow_summary    = WorkflowTestpipeline.paramsSummaryMultiqc(workflow, summary_params)
+    workflow_summary    = WorkflowValidation.paramsSummaryMultiqc(workflow, summary_params)
     ch_workflow_summary = Channel.value(workflow_summary)
 
-    methods_description    = WorkflowTestpipeline.methodsDescriptionText(workflow, ch_multiqc_custom_methods_description, params)
+    methods_description    = WorkflowValidation.methodsDescriptionText(workflow, ch_multiqc_custom_methods_description, params)
     ch_methods_description = Channel.value(methods_description)
 
     ch_multiqc_files = Channel.empty()
