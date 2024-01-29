@@ -1,4 +1,4 @@
-# nf-core/validation: Citations
+# nf-core/testpipeline: Citations
 
 ## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
 

@@ -1,4 +1,4 @@
-# nf-core/validation: Output
+# nf-core/testpipeline: Output
 
 ## Introduction
 

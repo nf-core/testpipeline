@@ -1,11 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/validation
+    nf-core/testpipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/validation
-    Website: https://nf-co.re/validation
-    Slack  : https://nfcore.slack.com/channels/validation
+    Github : https://github.com/nf-core/testpipeline
+    Website: https://nf-co.re/testpipeline
+    Slack  : https://nfcore.slack.com/channels/testpipeline
 ----------------------------------------------------------------------------------------
 */
 
@@ -44,7 +44,7 @@ if (params.validate_params) {
     validateParameters()
 }
 
-WorkflowMain.initialise(workflow, params, log)
+WorkflowMain.initialise(workflow, params, log, args)
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,13 +52,13 @@ WorkflowMain.initialise(workflow, params, log)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { VALIDATION } from './workflows/validation'
+include { TESTPIPELINE } from './workflows/testpipeline'
 
 //
-// WORKFLOW: Run main nf-core/validation analysis pipeline
+// WORKFLOW: Run main nf-core/testpipeline analysis pipeline
 //
-workflow NFCORE_VALIDATION {
-    VALIDATION ()
+workflow NFCORE_TESTPIPELINE {
+    TESTPIPELINE ()
 }
 
 /*
@@ -72,7 +72,7 @@ workflow NFCORE_VALIDATION {
 // See: https://github.com/nf-core/rnaseq/issues/619
 //
 workflow {
-    NFCORE_VALIDATION ()
+    NFCORE_TESTPIPELINE ()
 }
 
 /*
