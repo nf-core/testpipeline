@@ -9,6 +9,11 @@ jobs:
   toot:
     runs-on: ubuntu-latest
     steps:
+      - name: get topics and convert to hashtags
+        id: get_topics
+        run: |
+          curl -s https://nf-co.re/pipelines.json | jq -r '.remote_workflows[] | select(.name == "${{ github.repository }}") | .topics[]' | awk '{print "#"$0}' | tr '\n' ' ' > $GITHUB_OUTPUT
+
       - uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
@@ -20,11 +25,13 @@ jobs:
 
             Please see the changelog: ${{ github.event.release.html_url }}
 
+            ${{ steps.get_topics.outputs.GITHUB_OUTPUT }} #nfcore #openscience #nextflow #bioinformatics
+
   send-tweet:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
         with:
           python-version: "3.10"
       - name: Install dependencies
@@ -41,8 +48,7 @@ jobs:
               consumer_key=os.getenv("TWITTER_CONSUMER_KEY"),
               consumer_secret=os.getenv("TWITTER_CONSUMER_SECRET"),
           )
-          version = os.getenv("VERSION").strip('"')
-          tweet = os.getenv("TWEET").format(version=version)
+          tweet = os.getenv("TWEET")
           client.create_tweet(text=tweet)
         env:
           TWEET: |
@@ -53,4 +59,17 @@ jobs:
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+  bsky-post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zentered/bluesky-post-action@80dbe0a7697de18c15ad22f4619919ceb5ccf597 # v0.1.0
+        with:
+          post: |
+            Pipeline release! ${{ github.repository }} v${{ github.event.release.tag_name }} - ${{ github.event.release.name }}!
+
+            Please see the changelog: ${{ github.event.release.html_url }}
+        env:
+          BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
           #
