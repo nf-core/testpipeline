@@ -64,7 +64,7 @@ jobs:
         if: |
           ${{ steps.nf_core_outdated.outputs.stdout }} =~ 'nf-core'
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
           header: update template
           message: |
             ## :warning: New nf-core template version available
