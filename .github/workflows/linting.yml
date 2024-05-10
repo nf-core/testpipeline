@@ -68,11 +68,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: |
-                ## :warning: New nf-core template version available
-
-                Your pipeline is using an old version of the nf-core template: ${{ steps.read_yml.outputs['nf_core_version'] }}.
-                Please update your pipeline to the latest version.
+              body: "## :warning: New nf-core template version available\n\nYour pipeline is using an old version of the nf-core template: ${{ steps.read_yml.outputs['nf_core_version'] }}.\nPlease update your pipeline to the latest version."
             })
 
       - name: Run nf-core lint
