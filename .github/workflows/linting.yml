@@ -60,12 +60,12 @@ jobs:
         run: pip list --outdated | grep nf-core
 
       - name: Post nf-core last version comment
-        uses: marocchino/sticky-pull-request-comment@331f8f5b4215f0445d3c07b4967662a32a2d3e31 # v2
+        uses: mshick/add-pr-comment@b8f338c590a895d50bcbfa6c5859251edc8952fc # v2
         if: |
           ${{ steps.nf_core_outdated.outputs.stdout }} =~ 'nf-core'
         with:
           GITHUB_TOKEN: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
-          header: update template
+          allow-repeats: false
           message: |
             ## :warning: New nf-core template version available
 
