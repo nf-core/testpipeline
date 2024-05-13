@@ -1,5 +1,6 @@
-name: nf-core version comment
-# This workflow is triggered on PRs to check if the pipeline template version if the latest.
+name: nf-core template version comment
+# This workflow is triggered on PRs to check if the pipeline template version matches the latest.
+# It posts a comment on the PR, even if it comes from a fork.
 on:
   pull_request_target:
 
@@ -7,6 +8,9 @@ jobs:
   check_version:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out pipeline code
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+
       - name: Read template version from .nf-core.yml
         uses: pietrobolcato/action-read-yaml@1.0.0
         id: read_yml
