@@ -178,18 +178,6 @@
                     "default": false,
                     "hidden": true
                 },
-                "version": {
-                    "type": "boolean",
-                    "description": "Display version and exit.",
-                    "fa_icon": "fas fa-question-circle",
-                    "hidden": true
-                },
-                "version": {
-                    "type": "boolean",
-                    "description": "Display version and exit.",
-                    "fa_icon": "fas fa-question-circle",
-                    "hidden": true
-                },
                 "publish_dir_mode": {
                     "type": "string",
                     "default": "copy",
@@ -290,6 +278,30 @@
                     "hidden": true
                 }
             }
+        },
+        "example_options": {
+            "title": "Options added for nf-validation testing",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Options added for nf-validation testing.",
+            "properties": {
+                "a_path": {
+                    "type": "string",
+                    "format": "path",
+                    "exists": true,
+                    "description": "This is a path, file or directory.",
+                    "fa_icon": "fas fa-question-circle",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/"
+                },
+                "a_pattern": {
+                    "type": "string",
+                    "format": "file-path-pattern",
+                    "exists": true,
+                    "description": "A glob pattern that should resolve in at least one file.",
+                    "fa_icon": "fas fa-question-circle",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/*.fasta"
+                }
+            }
         }
     },
     "allOf": [
@@ -307,6 +319,9 @@
         },
         {
             "$ref": "#/definitions/generic_options"
+        },
+        {
+            "$ref": "#/definitions/example_options"
         }
     ]
 }
