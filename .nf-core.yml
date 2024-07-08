@@ -1,2 +1,13 @@
+nf_core_version: 2.14.2.dev0
 repository_type: pipeline
-nf_core_version: "2.14.0"
+template:
+  author: nf-core
+  description: An example pipeline used to test new nf-core infrastructure and common
+    code.
+  force: true
+  is_nfcore: true
+  name: nf-core/testpipeline
+  org: nf-core
+  outdir: /Users/jmir/Work/testpipeline
+  skip_features: null
+  version: 1.0dev
