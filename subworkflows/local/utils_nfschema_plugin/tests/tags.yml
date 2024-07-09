@@ -1,0 +1,2 @@
+subworkflows/utils_nfschema_plugin:
+  - subworkflows/nf-core/utils_nfschema_plugin/**
