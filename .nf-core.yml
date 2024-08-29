@@ -1,6 +1,17 @@
+bump_version: null
+lint: null
 nf_core_version: 2.14.1
+org_path: null
 repository_type: pipeline
 template:
+  author: nf-core
+  description: An example pipeline used to test new nf-core infrastructure and common
+    code.
+  force: false
+  is_nfcore: null
+  name: testpipeline
+  org: nf-core
+  outdir: /Users/jmir/Work/testpipeline
   skip_features:
   - github
   - ci
@@ -23,3 +34,5 @@ template:
   - documentation
   - test_config
   - seqera_platform
+  version: 1.0dev
+update: null
