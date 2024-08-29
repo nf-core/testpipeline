@@ -2,6 +2,9 @@ repository_type: pipeline
 nf_core_version: "2.14.1"
 template:
   author: nf-core
+  description: An example pipeline used to test new nf-core infrastructure and common
+    code.
+  name: nf-core/testpipeline
   skip_features:
   - github
   - ci
