@@ -5,6 +5,7 @@ template:
   description: An example pipeline used to test new nf-core infrastructure and common
     code.
   name: nf-core/testpipeline
+  org: nf-core
   skip_features:
   - github
   - ci
