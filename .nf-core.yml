@@ -1,2 +1,25 @@
 repository_type: pipeline
 nf_core_version: "2.14.1"
+template:
+  skip_features:
+  - github
+  - ci
+  - igenomes
+  - github_badges
+  - nf_core_configs
+  - code_linters
+  - citations
+  - gitpod
+  - codespaces
+  - multiqc
+  - fastqc
+  - modules
+  - changelog
+  - nf_schema
+  - license
+  - email
+  - adaptivecard
+  - slackreport
+  - documentation
+  - test_config
+  - seqera_platform
