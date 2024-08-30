@@ -54,4 +54,3 @@ jobs:
       - name: Mark as Skipped
         if: ${{ !(matrix.profile == 'docker' || github.base_ref == 'master') }}
         run: exit 78
-        continue-on-error: true
