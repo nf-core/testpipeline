@@ -7,6 +7,8 @@ on:
     branches:
       - dev
   pull_request:
+    branches:
+      - master
   release:
     types: [published]
 
@@ -52,7 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: nf-core -l lint_log.txt lint --dir ${GITHUB_WORKSPACE} --markdown lint_results.md
-        if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' }}
 
       - name: Run nf-core lint --release
         env:
@@ -60,7 +62,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: nf-core -l lint_log.txt lint --release --dir ${GITHUB_WORKSPACE} --markdown lint_results.md
-        if: ${{ github.event_name == 'release' }}
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'release' }}
 
       - name: Save PR number
         if: ${{ always() }}
