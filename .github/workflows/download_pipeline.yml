@@ -11,11 +11,6 @@ on:
         description: "The specific branch you wish to utilize for the test execution of nf-core download."
         required: true
         default: "dev"
-    inputs:
-      testbranch:
-        description: "The specific branch you wish to utilize for the test execution of nf-core download."
-        required: true
-        default: "dev"
   pull_request:
     types:
       - opened
@@ -32,7 +27,6 @@ env:
 
 jobs:
   download:
-    runs-on: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
       - name: Install Nextflow
