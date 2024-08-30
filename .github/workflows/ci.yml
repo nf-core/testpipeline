@@ -26,7 +26,6 @@ jobs:
         NXF_VER:
           - "23.04.0"
           - "latest-everything"
-        profile: ["docker", "singularity", "conda"]
     steps:
       - name: Check out pipeline code
         uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
@@ -46,11 +45,21 @@ jobs:
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
         if: "${{ matrix.profile == 'docker' || github.base_ref == 'master' }}"
 
-      - name: Run pipeline with test data ((${{ matrix.profile }}))
+      - name: Run pipeline with test data (docker)
         # TODO nf-core: You can customise CI pipeline run tests as required
         # For example: adding multiple test runs with different parameters
         # Remember that you can parallelise this by using strategy.matrix
         run: |
-          nextflow run ${GITHUB_WORKSPACE} -profile test,${{ matrix.profile }} --outdir ./results
-        # Awlays run docker tests. Run conda & singularity only on PRs to master
-        if: "${{ matrix.profile == 'docker' || github.base_ref == 'master' }}"
+          nextflow run ${GITHUB_WORKSPACE} -profile test,docker --outdir ./results
+
+      - name: Run pipeline with test data (singularity)
+        # TODO nf-core: You can customise CI pipeline run tests as required
+        run: |
+          nextflow run ${GITHUB_WORKSPACE} -profile test,singularity --outdir ./results
+        if : "${{ github.base_ref == 'master' }}"
+
+      - name: Run pipeline with test data (conda)
+        # TODO nf-core: You can customise CI pipeline run tests as required
+        run: |
+          nextflow run ${GITHUB_WORKSPACE} -profile test,conda --outdir ./results
+        if : "${{ github.base_ref == 'master' }}"
