@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: nf-core -l lint_log.txt lint --dir ${GITHUB_WORKSPACE} --markdown lint_results.md
-        if: ${{ github.head_ref == 'dev' }}
+        if: ${{ github.base_ref == 'dev' }}
 
       - name: Run nf-core lint --release
         env:
@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: nf-core -l lint_log.txt lint --release --dir ${GITHUB_WORKSPACE} --markdown lint_results.md
-        if: ${{ github.head_ref == 'master' }}
+        if: ${{ github.base_ref == 'master' }}
 
       - name: Save PR number
         if: ${{ always() }}
