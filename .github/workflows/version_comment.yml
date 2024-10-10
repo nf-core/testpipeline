@@ -31,7 +31,7 @@ jobs:
       - name: Post nf-core last version comment
         uses: mshick/add-pr-comment@b8f338c590a895d50bcbfa6c5859251edc8952fc # v2
         if: |
-          contains(${{ env.OUTPUT }}, 'nf-core')
+          contains(env.OUTPUT, 'nf-core')
         with:
           repo-token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
           allow-repeats: false
