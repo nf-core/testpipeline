@@ -17,7 +17,8 @@ lint:
 org_path: null
 template:
   author: TEST
-  description: An open-source analysis pipeline to detect germline or somatic variants from whole genome or targeted sequencing
+  description: An open-source analysis pipeline to detect germline or somatic variants
+    from whole genome or targeted sequencing
   force: false
   is_nfcore: true
   name: testpipeline
