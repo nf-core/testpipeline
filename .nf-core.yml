@@ -17,6 +17,3 @@ template:
   skip_features: null
   version: 1.0dev
 update: null
-lint:
-  files_unchanged:
-    - ".github/workflows/linting.yml"
