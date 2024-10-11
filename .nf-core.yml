@@ -1,5 +1,19 @@
-repository_type: pipeline
-nf_core_version: "2.14.1"
+bump_version: null
 lint:
   files_unchanged:
-    - ".github/workflows/linting.yml"
+    - .github/workflows/linting.yml
+nf_core_version: 3.0.1
+org_path: null
+repository_type: pipeline
+template:
+  author: nf-core
+  description: An example pipeline used to test new nf-core infrastructure and common
+    code.
+  force: false
+  is_nfcore: true
+  name: testpipeline
+  org: nf-core
+  outdir: .
+  skip_features: null
+  version: 1.0dev
+update: null
