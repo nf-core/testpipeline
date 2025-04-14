@@ -24,6 +24,7 @@
 **nf-core/testpipeline** is a bioinformatics pipeline that ...
 
 <!-- TODO nf-core:
+   TESTING
    Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
    major pipeline sections and the types of output it produces. You're giving an overview to someone new
    to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
