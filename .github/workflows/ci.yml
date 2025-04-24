@@ -99,7 +99,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@52423e01640425a022ef5fd42c6fb5f633a02728 # v2
         if: ${{ steps.run-test.outcome == 'failure' }}
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
           number: ${{ github.event.pull_request.number }}
           message: |
             Pipeline run failed with Nextflow version ${{ matrix.NXF_VER }} on ${{ matrix.profile }}.
