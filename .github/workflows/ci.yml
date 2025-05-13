@@ -99,3 +99,9 @@ jobs:
               exit 1
             fi
           fi
+
+      - name: Create job summary artifact
+        uses: austenstone/job-summary@v2.0
+        with:
+          create-md: true
+          create-md-artifact: true
