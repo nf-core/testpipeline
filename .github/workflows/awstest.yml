@@ -4,6 +4,9 @@ name: nf-core AWS test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 'nf-core-template-merge-*'
 jobs:
   run-platform:
     name: Run AWS tests

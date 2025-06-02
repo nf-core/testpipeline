@@ -10,6 +10,10 @@ on:
   release:
     types: [published]
 
+  push:
+    branches:
+      - 'nf-core-template-merge-*'
+
 jobs:
   run-platform:
     name: Run AWS full tests
