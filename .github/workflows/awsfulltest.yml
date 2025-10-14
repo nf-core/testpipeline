@@ -39,6 +39,8 @@ jobs:
               "outdir": "s3://${{ vars.AWS_S3_BUCKET }}/testpipeline/results-${{ steps.revision.outputs.revision }}"
             }
           profiles: test_full
+      - name: see output files
+        run: ls
 
       - uses: actions/upload-artifact@v4
         with:
