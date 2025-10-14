@@ -46,5 +46,5 @@ jobs:
         with:
           name: Seqera Platform debug log file
           path: |
-            seqera_platform_action_*.log
-            seqera_platform_action_*.json
+            platform_action_*.log
+            platform_action_*.json
