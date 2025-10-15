@@ -12,4 +12,3 @@ testing*
 bin/
 .nf-test/
 ro-crate-metadata.json
-.nf-test/
