@@ -55,6 +55,8 @@ Each row represents a fastq file (single-end) or a pair of fastq files (paired e
 -->
 
 Now, you can run the pipeline using:
+Adding some text
+even more text
 
 <!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
