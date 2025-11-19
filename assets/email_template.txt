@@ -4,7 +4,7 @@
   |\\ | |__  __ /  ` /  \\ |__) |__         }  {
   | \\| |       \\__, \\__/ |  \\ |___     \\`-._,-`-,
                                         `._,._,'
-  nf-core/testpipeline v${version}
+  nf-core/testpipeline ${version}
 ----------------------------------------------------
 Run Name: $runName
 
