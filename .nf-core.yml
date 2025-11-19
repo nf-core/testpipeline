@@ -1,9 +1,6 @@
-repository_type: pipeline
-
-nf_core_version: 3.5.0
-
 lint: {}
-
+nf_core_version: 3.5.0
+repository_type: pipeline
 template:
   author: nf-core
   description: An example pipeline used to test new nf-core infrastructure and common
