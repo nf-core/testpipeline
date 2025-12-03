@@ -80,6 +80,30 @@ output:
         pattern: "versions.yml"
         ontologies:
           - edam: http://edamontology.org/format_3750 # YAML
+containers:
+    docker:
+        linux_amd64:
+            name: community.wave.seqera.io/library/multiqc:1.32--d58f60e4deb769bf
+            build_id: d58f60e4deb769bf
+            scan_id: 6fc310277b74
+        linux_arm64:
+            name: community.wave.seqera.io/library/multiqc:1.32--d58f60e4deb769bf
+            build_id: d58f60e4deb769bf
+            scan_id: d9a1db848b9b
+    singularity:
+        linux_amd64:
+            name: oras://community.wave.seqera.io/library/multiqc:1.32--d58f60e4deb769bf
+            https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8c/8c6c120d559d7ee04c7442b61ad7cf5a9e8970be5feefb37d68eeaa60c1034eb/data
+            build_id: d58f60e4deb769bf
+        linux_arm64:
+            name: oras://community.wave.seqera.io/library/multiqc:1.32--d58f60e4deb769bf
+            https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8c/8c6c120d559d7ee04c7442b61ad7cf5a9e8970be5feefb37d68eeaa60c1034eb/data
+            build_id: d58f60e4deb769bf
+    conda:
+        linux_amd64:
+            lock file: https://wave.seqera.io/v1alpha1/builds/5cfd0f3cb6760c42_1/condalock
+        linux_arm64:
+            lock file: https://wave.seqera.io/v1alpha1/builds/d3caca66b4f3d3b0_1/condalock
 authors:
   - "@abhi18av"
   - "@bunop"
