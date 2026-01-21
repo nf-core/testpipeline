@@ -1,96 +1,103 @@
 name: fastqc
 description: Run FastQC on sequenced reads
 keywords:
-  - quality control
-  - qc
-  - adapters
-  - fastq
+- quality control
+- qc
+- adapters
+- fastq
 tools:
-  - fastqc:
-      description: |
-        FastQC gives general quality metrics about your reads.
-        It provides information about the quality score distribution
-        across your reads, the per base sequence content (%A/C/G/T).
+- fastqc:
+    description: |
+      FastQC gives general quality metrics about your reads.
+      It provides information about the quality score distribution
+      across your reads, the per base sequence content (%A/C/G/T).
 
-        You get information about adapter contamination and other
-        overrepresented sequences.
-      homepage: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-      documentation: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/
-      licence: ["GPL-2.0-only"]
-      identifier: biotools:fastqc
+      You get information about adapter contamination and other
+      overrepresented sequences.
+    homepage: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+    documentation: 
+      https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/
+    licence: ["GPL-2.0-only"]
+    identifier: biotools:fastqc
 input:
+- - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - reads:
+      type: file
+      description: |
+        List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+        respectively.
+      ontologies: []
+output:
+  html:
   - - meta:
         type: map
         description: |
           Groovy Map containing sample information
           e.g. [ id:'test', single_end:false ]
-    - reads:
+    - "*.html":
         type: file
-        description: |
-          List of input FastQ files of size 1 and 2 for single-end and paired-end data,
-          respectively.
+        description: FastQC report
+        pattern: "*_{fastqc.html}"
         ontologies: []
-output:
-  html:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.html":
-          type: file
-          description: FastQC report
-          pattern: "*_{fastqc.html}"
-          ontologies: []
   zip:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.zip":
-          type: file
-          description: FastQC report archive
-          pattern: "*_{fastqc.zip}"
-          ontologies: []
-  versions:
-    - versions.yml:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - "*.zip":
         type: file
-        description: File containing software versions
-        pattern: "versions.yml"
-        ontologies:
-          - edam: http://edamontology.org/format_3750 # YAML
-containers:
-    docker:
-        linux_amd64:
-            name: community.wave.seqera.io/library/fastqc:0.12.1--5cfd0f3cb6760c42
-            build_id: 5cfd0f3cb6760c42_1
-            scan_id: 6fc310277b74
-        linux_arm64:
-            name: community.wave.seqera.io/library/fastqc:0.12.1--d3caca66b4f3d3b0
-            build_id: d3caca66b4f3d3b0_1
-            scan_id: d9a1db848b9b
-    singularity:
-        linux_amd64:
-            name: oras://community.wave.seqera.io/library/fastqc:0.12.1--0827550dd72a3745
-            https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b2/b280a35770a70ed67008c1d6b6db118409bc3adbb3a98edcd55991189e5116f6/data
-            build_id: 0827550dd72a3745_1
-        linux_arm64:
-            name: oras://community.wave.seqera.io/library/fastqc:0.12.1--b2ccdee5305e5859
-            https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/76/76e744b425a6b4c7eb8f12e03fa15daf7054de36557d2f0c4eb53ad952f9b0e3/data
-            build_id: b2ccdee5305e5859_1
-    conda:
-        linux_amd64:
-            lock file: https://wave.seqera.io/v1alpha1/builds/5cfd0f3cb6760c42_1/condalock
-        linux_arm64:
-            lock file: https://wave.seqera.io/v1alpha1/builds/d3caca66b4f3d3b0_1/condalock
+        description: FastQC report archive
+        pattern: "*_{fastqc.zip}"
+        ontologies: []
+  versions:
+  - versions.yml:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+      ontologies:
+      - edam: http://edamontology.org/format_3750     # YAML
 authors:
-  - "@drpatelh"
-  - "@grst"
-  - "@ewels"
-  - "@FelixKrueger"
+- "@drpatelh"
+- "@grst"
+- "@ewels"
+- "@FelixKrueger"
 maintainers:
-  - "@drpatelh"
-  - "@grst"
-  - "@ewels"
-  - "@FelixKrueger"
+- "@drpatelh"
+- "@grst"
+- "@ewels"
+- "@FelixKrueger"
+containers:
+  docker:
+    linux/amd64:
+      name: community.wave.seqera.io/library/fastqc:0.12.1--af7a5314d5015c29
+      buildId: bd-af7a5314d5015c29_1
+      scanId: sc-a618548acbee5a8a_33
+    linux/arm64:
+      name: community.wave.seqera.io/library/fastqc:0.12.1--df99cb252670875a
+      buildId: bd-df99cb252670875a_2
+      scanId: sc-b5913ed5d42b22d2_20
+  singularity:
+    linux/amd64:
+      name: 
+        oras://community.wave.seqera.io/library/fastqc:0.12.1--104d26ddd9519960
+      buildId: bd-104d26ddd9519960_1
+      https: 
+        https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e0/e0c976cb2eca5fee72618a581537a4f8ea42fcae24c9b201e2e0f764fd28648a/data
+    linux/arm64:
+      name: 
+        oras://community.wave.seqera.io/library/fastqc:0.12.1--d56b505a93aef38a
+      buildId: bd-d56b505a93aef38a_1
+      https: 
+        https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fd/fd39534bf298698cbe3ee4d4a6f1e73330ec4bca44c38dd9a4d06cb5ea838017/data
+  conda:
+    linux/amd64:
+      lock_file: 
+        https://wave.seqera.io/v1alpha1/builds/bd-af7a5314d5015c29_1/condalock
+    linux/arm64:
+      lock_file: 
+        https://wave.seqera.io/v1alpha1/builds/bd-df99cb252670875a_2/condalock
