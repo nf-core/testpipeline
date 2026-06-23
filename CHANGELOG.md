@@ -11,6 +11,8 @@ Initial release of nf-core/testpipeline, created with the [nf-core](https://nf-c
 
 ### `Fixed`
 
+- Test run for the consolidated PR-comment CI workflow
+
 ### `Dependencies`
 
 ### `Deprecated`
