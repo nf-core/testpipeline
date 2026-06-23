@@ -35,6 +35,10 @@ jobs:
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: pr-comment
+          # Extract into a pr-comment/ subdirectory; with a single named
+          # artifact this action otherwise unpacks the files into the workspace
+          # root, and the steps below look for them under pr-comment/.
+          path: pr-comment
           if_no_artifact_found: ignore
 
       - name: Read comment metadata
