@@ -44,11 +44,29 @@ jobs:
       - name: Read comment metadata
         id: meta
         run: |
-          # No comment body means there is nothing to post.
-          [ -f pr-comment/comment.md ] || exit 0
+          # Show what the download step actually produced. This makes a future
+          # path/artifact mismatch obvious instead of silently posting nothing.
+          echo "::group::Downloaded pr-comment contents"
+          ls -la pr-comment 2>/dev/null || echo "No pr-comment/ directory was downloaded."
+          echo "::endgroup::"
+
+          # No artifact at all: the producer didn't upload one (e.g. a workflow
+          # that never builds a comment). Nothing to do.
+          if [ ! -d pr-comment ]; then
+            echo "No pr-comment artifact found; nothing to post."
+            exit 0
+          fi
+
+          # Artifact present but no body: a valid "nothing to report" outcome
+          # (e.g. linting passed, template up to date).
+          if [ ! -f pr-comment/comment.md ]; then
+            echo "Artifact present but no comment.md; nothing to post."
+            exit 0
+          fi
 
           pr_number=$(cat pr-comment/pr_number.txt)
           header=$(cat pr-comment/header.txt)
+          echo "Found comment.md (header='$header', pr_number='$pr_number')."
 
           # Guard against anything unexpected ending up in the PR number.
           case "$pr_number" in
@@ -61,6 +79,7 @@ jobs:
           echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
           echo "header=$header" >> "$GITHUB_OUTPUT"
           echo "post=true" >> "$GITHUB_OUTPUT"
+          echo "Will post comment to PR #${pr_number}."
 
       - name: Post PR comment
         if: steps.meta.outputs.post == 'true'
