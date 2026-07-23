@@ -18,6 +18,7 @@ on:
       - "nf-core linting"
       - "nf-core template version comment"
       - "nf-core branch protection"
+      - "Run nf-test"
 
 permissions:
   actions: read
