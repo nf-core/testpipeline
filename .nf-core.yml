@@ -6,7 +6,7 @@ lint:
     - .github/workflows/branch.yml
     - .github/workflows/linting.yml
     - assets/email_template.html
-nf_core_version: 4.0.2
+nf_core_version: 4.1.0
 repository_type: pipeline
 template:
   author: nf-core
