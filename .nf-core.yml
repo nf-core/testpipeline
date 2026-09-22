@@ -1,5 +1,10 @@
+ci:
+  # Preserves this pipeline's existing nf-test tuning; nf-core/actions'
+  # own built-in defaults are nf_test_version 0.9.5 and max_shards 20.
+  nf_test_version: "0.9.4"
+  max_shards: 7
 lint: {}
-nf_core_version: 3.5.2
+nf_core_version: 4.1.0
 repository_type: pipeline
 template:
   author: nf-core
