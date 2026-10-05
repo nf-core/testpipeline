@@ -16,6 +16,6 @@ jobs:
       actions: read
       contents: read
       issues: write
-      pull-requests: read
+      pull-requests: write
     secrets:
       BOT_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
