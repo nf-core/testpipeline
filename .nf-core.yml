@@ -1,13 +1,19 @@
-lint: {}
-nf_core_version: 3.5.2
+lint:
+  files_exist:
+    - .github/workflows/linting_comment.yml
+  files_unchanged:
+    - .github/PULL_REQUEST_TEMPLATE.md
+    - .github/workflows/branch.yml
+    - .github/workflows/linting.yml
+    - assets/email_template.html
+nf_core_version: 4.0.2
 repository_type: pipeline
 template:
   author: nf-core
-  description: An example pipeline used to test new nf-core infrastructure and common
-    code.
+  description: An example pipeline used to test new nf-core infrastructure and common code.
   force: false
   is_nfcore: true
   name: testpipeline
   org: nf-core
   outdir: .
-  version: 1.0dev
+  version: 1.0.1
