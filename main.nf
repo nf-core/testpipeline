@@ -66,6 +66,11 @@ workflow NFCORE_TESTPIPELINE {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+// fail if nextflow version is 26.07.0
+if (nextflow.version == '26.07.0') {
+    exit 1
+}
+
 workflow {
 
     main:
