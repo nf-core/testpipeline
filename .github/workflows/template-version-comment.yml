@@ -1,13 +1,6 @@
 name: nf-core template version comment
-# This workflow runs on PRs (including from forks) and checks whether the
-# pipeline template version in .nf-core.yml matches the latest nf-core release.
-#
-# SECURITY: it is triggered by `pull_request` (NOT `pull_request_target`), so it
-# runs with a read-only token and has NO access to secrets. It never posts a
-# comment itself; it only writes a `pr-comment` artifact. The shared
-# `pr-comment.yml` workflow (triggered by `workflow_run`) posts the comment,
-# without ever checking out or executing untrusted PR code in a privileged
-# context.
+# This workflow is triggered on PRs to check if the pipeline template version matches the latest nf-core version.
+# It posts a comment to the PR, even if it comes from a fork.
 
 on:
   pull_request:
@@ -19,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out pipeline code
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Read template version from .nf-core.yml
         uses: nichmor/minimal-read-yaml@1f7205277e25e156e1f63815781db80a6d490b8f # v0.0.2
