@@ -1,11 +1,11 @@
 lint:
   files_exist:
-  - .github/workflows/linting_comment.yml
+    - .github/workflows/linting_comment.yml
   files_unchanged:
-  - .github/PULL_REQUEST_TEMPLATE.md
-  - .github/workflows/branch.yml
-  - .github/workflows/linting.yml
-  - assets/email_template.html
+    - .github/PULL_REQUEST_TEMPLATE.md
+    - .github/workflows/branch.yml
+    - .github/workflows/linting.yml
+    - assets/email_template.html
 nf_core_version: 4.2.0
 repository_type: pipeline
 template:
