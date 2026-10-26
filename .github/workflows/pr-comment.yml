@@ -28,38 +28,28 @@ permissions:
 jobs:
   post-comment:
     runs-on: ubuntu-latest
-    # Only act on runs that were triggered by a pull request.
     if: github.event.workflow_run.event == 'pull_request'
     steps:
       - name: Download PR comment artifact
-        uses: dawidd6/action-download-artifact@b6e2e70617bc3265edd6dab6c906732b2f1ae151 # v21
+        uses: dawidd6/action-download-artifact@eab87c9830c39eff17e5a6eadb20bfb4bc880477 # v27
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: pr-comment
-          # Extract into a pr-comment/ subdirectory; with a single named
-          # artifact this action otherwise unpacks the files into the workspace
-          # root, and the steps below look for them under pr-comment/.
           path: pr-comment
           if_no_artifact_found: ignore
 
       - name: Read comment metadata
         id: meta
         run: |
-          # Show what the download step actually produced. This makes a future
-          # path/artifact mismatch obvious instead of silently posting nothing.
           echo "::group::Downloaded pr-comment contents"
           ls -la pr-comment 2>/dev/null || echo "No pr-comment/ directory was downloaded."
           echo "::endgroup::"
 
-          # No artifact at all: the producer didn't upload one (e.g. a workflow
-          # that never builds a comment). Nothing to do.
           if [ ! -d pr-comment ]; then
             echo "No pr-comment artifact found; nothing to post."
             exit 0
           fi
 
-          # Artifact present but no body: a valid "nothing to report" outcome
-          # (e.g. linting passed, template up to date).
           if [ ! -f pr-comment/comment.md ]; then
             echo "Artifact present but no comment.md; nothing to post."
             exit 0
@@ -84,7 +74,7 @@ jobs:
 
       - name: Post PR comment
         if: steps.meta.outputs.post == 'true'
-        uses: marocchino/sticky-pull-request-comment@70d2764d1a7d5d9560b100cbea0077fc8f633987 # v3
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.meta.outputs.pr_number }}
