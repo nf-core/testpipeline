@@ -1,11 +1,6 @@
 name: nf-core branch protection
 # This workflow is triggered on PRs to `main`/`master` branch on the repository
 # It fails when someone tries to make a PR against the nf-core `main`/`master` branch instead of `dev`
-#
-# SECURITY: it is triggered by `pull_request` (NOT `pull_request_target`) and has
-# no secrets. The failing status check still blocks the PR; when it fails it
-# uploads a `pr-comment` artifact and the shared `pr-comment.yml` workflow posts
-# the explanatory comment.
 on:
   pull_request:
     branches:
@@ -24,7 +19,7 @@ jobs:
         env:
           HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
         run: |
-          { [[ "$HEAD_REPO" == "nf-core/testpipeline" ]] && [[ "$GITHUB_HEAD_REF" == "dev" ]]; } || [[ "$GITHUB_HEAD_REF" == "patch" ]]
+          { [[ "$HEAD_REPO" == nf-core/testpipeline ]] && [[ $GITHUB_HEAD_REF == "dev" ]]; } || [[ $GITHUB_HEAD_REF == "patch" ]]
 
       # If the above check failed, build a comment to be posted by the shared poster workflow
       - name: Build PR comment
@@ -61,7 +56,7 @@ jobs:
 
       - name: Upload PR comment artifact
         if: failure()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: pr-comment
           path: pr-comment/
